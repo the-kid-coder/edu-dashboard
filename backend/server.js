@@ -12,7 +12,7 @@ app.use(express.json());
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/auth/callback'
+  process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/api/auth-callback'
 );
 
 // Store tokens in memory (in production, use a database)
@@ -20,7 +20,7 @@ const tokenStore = {};
 
 // ============= OAuth Endpoints =============
 
-app.get('/auth/login', (req, res) => {
+app.get('/api/auth-login', (req, res) => {
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: [
@@ -34,7 +34,7 @@ app.get('/auth/login', (req, res) => {
   res.redirect(authUrl);
 });
 
-app.get('/auth/callback', async (req, res) => {
+app.get('/api/auth-callback', async (req, res) => {
   const { code } = req.query;
   if (!code) {
     return res.status(400).json({ error: 'Missing authorization code' });
@@ -61,7 +61,7 @@ app.get('/auth/callback', async (req, res) => {
   }
 });
 
-app.post('/auth/verify', (req, res) => {
+app.post('/api/auth-verify', (req, res) => {
   const { sessionToken } = req.body;
   if (!sessionToken || !tokenStore[sessionToken]) {
     return res.status(401).json({ error: 'Invalid or expired session' });
@@ -93,10 +93,10 @@ app.get('/api/courses', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /api/courses/:courseId/work - List assignments for a course
-app.get('/api/courses/:courseId/work', authenticateToken, async (req, res) => {
+// GET /api/coursework - List assignments for a course
+app.get('/api/coursework', authenticateToken, async (req, res) => {
   try {
-    const { courseId } = req.params;
+    const { courseId } = req.query;
     const classroom = google.classroom({ version: 'v1', auth: oauth2Client });
     
     const response = await classroom.courses.courseWork.list({

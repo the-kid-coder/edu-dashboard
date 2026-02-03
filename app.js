@@ -1,5 +1,7 @@
-// Backend configuration - use relative paths for itsalive.co
-const BACKEND_URL = '/api';
+// Backend configuration
+// Use relative paths for itsalive.co, absolute URL for local development
+const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const BACKEND_URL = isLocalDev ? 'http://localhost:3001/api' : '/api';
 
 const STORAGE_KEY = 'edu:selectedResources';
 const CLASSROOM_SESSION_KEY = 'edu:classroomSession';

@@ -1,7 +1,5 @@
 {
   "env": {
-    "GOOGLE_CLIENT_ID": "",
-    "GOOGLE_CLIENT_SECRET": "",
     "FRONTEND_URL": "https://studenthq.itsalive.co",
     "ITSALIVE_URL": "https://studenthq.itsalive.co"
   }
