@@ -1,7 +1,7 @@
 {
   "env": {
-    "GOOGLE_CLIENT_ID": "348042301777-805p9dbd5pi21bgd8ciem4ai0471i6vr.apps.googleusercontent.com",
-    "GOOGLE_CLIENT_SECRET": "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",
+    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_SECRET": "",
     "FRONTEND_URL": "https://studenthq.itsalive.co",
     "ITSALIVE_URL": "https://studenthq.itsalive.co"
   }
