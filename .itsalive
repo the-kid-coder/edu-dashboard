@@ -1,0 +1,7 @@
+{
+  "subdomain": "studenthq",
+  "domain": "studenthq.itsalive.co",
+  "email": "luka.onvural@gmail.com",
+  "deployToken": "d38d9c03b38f504e051030ac477f6af4d215651c48d699731107702d0ea08566",
+  "publishDir": "."
+}
